@@ -1,7 +1,7 @@
 <template>
 	<section>
 		<!--工具条-->
-		这是用户管理页面
+		这是账号管理
 
 	</section>
 </template>

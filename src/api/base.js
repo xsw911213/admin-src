@@ -1,7 +1,8 @@
 'use strict';
 
-var axios = require('axios');
-var { Message } = require('element-ui')
+// var axios = require('axios');
+import axios from 'axios';
+import { Message } from 'element-ui';
 
 var bky  = {
   http:function(method,url,body,successFun,errorFun,selfParam,debug){
@@ -69,11 +70,15 @@ var bky  = {
       Message({
         showClose: true,
         message: error.response.data.message,
+        // message:'11',
         type: 'error',
         duration:5000
       })
+      
       console.error(error);
     })
   },
 }
-module.exports = bky;
+// module.exports = bky;
+
+export default bky;

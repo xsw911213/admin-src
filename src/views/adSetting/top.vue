@@ -1,7 +1,7 @@
 <template>
 	<section>
 		<!--工具条-->
-		这是用户管理页面
+		这是上滚动条设置页面
 
 	</section>
 </template>

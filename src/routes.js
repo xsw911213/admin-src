@@ -2,10 +2,11 @@ import Login from './views/Login.vue'
 import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
 import Main from './views/Main.vue'
-import adminSetting from './views/nav1/adminSetting'
-import masterSetting from './views/nav1/masterSetting'
-import Page4 from './views/nav2/Page4.vue'
-import Page5 from './views/nav2/Page5.vue'
+import hotelSetting from './views/settings/hotelSetting'
+import accountSetting from './views/settings/accountSetting'
+import begin from './views/adSetting/begin'
+import top from './views/adSetting/top'
+import bottom from './views/adSetting/bottom'
 // import echarts from './views/charts/echarts.vue'
 
 let routes = [
@@ -21,6 +22,11 @@ let routes = [
         name: '',
         hidden: true
     },
+    {
+        path: '*',
+        hidden: true,
+        redirect: { path: '/404' }
+    },
     //{ path: '/main', component: Main },
     {
         path: '/',
@@ -35,12 +41,11 @@ let routes = [
     {
         path: '/',
         component: Home,
-        name: '用户管理',
+        name: '管理设置',
         iconCls: 'el-icon-message',//图标样式class
         children: [
-            { path: '/main', component: Main, name: '主页', hidden: true },
-            { path: '/adminSetting', component: adminSetting, name: '管理员设置' },
-            { path: '/masterSetting', component: masterSetting, name: '账号设置' },
+            { path: '/hotelSetting', component: hotelSetting, name: '酒店设置' },
+            { path: '/accountSetting', component: accountSetting, name: '账号设置' },
         ]
     },
     {
@@ -49,10 +54,11 @@ let routes = [
         name: '广告投放',
         iconCls: 'fa fa-id-card-o',
         children: [
-            { path: '/page4', component: Page4, name: '页面4' },
-            { path: '/page5', component: Page5, name: '页面5' }
+            { path: '/begin', component: begin, name: '开屏广告' },
+            { path: '/top', component: top, name: '上滚动条' },
+            { path: '/bottom', component: bottom, name: '下固定广告位' }
         ]
-    },
+    }
     // {
     //     path: '/',
     //     component: Home,
@@ -72,11 +78,7 @@ let routes = [
     //         { path: '/echarts', component: echarts, name: 'echarts' }
     //     ]
     // },
-    {
-        path: '*',
-        hidden: true,
-        redirect: { path: '/404' }
-    }
+    
 ];
 
 export default routes;

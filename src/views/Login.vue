@@ -25,7 +25,7 @@
       return {
         logining: false,
         ruleForm2: {
-          account: 'admin',
+          account: 'master',
           checkPass: '123456'
         },
         rules2: {
@@ -57,16 +57,23 @@
             .then(function (response) {
               
               let data = response.data;
-              console.log(data);
               _this.logining = false;
               if(data.status === 'success'){
-                console.log('ttttt')
                 sessionStorage.setItem('user', JSON.stringify(data.userinfo));
                 _this.$router.push({ path: data.path });
               }
             })
             .catch(function (error) {
-              console.log(error);
+              // console.log(arguments);
+              // _this.$message.error('错了哦，这是一条错误消息');
+              _this.$message({
+                showClose: true,
+                message: error.response.data.message,
+                // message:'11',
+                type: 'error',
+                duration:5000
+              })
+              _this.logining = false;
             });
             // requestLogin(loginParams).then(data => {
             //   this.logining = false;

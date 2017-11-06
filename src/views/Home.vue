@@ -25,30 +25,14 @@
 				<!--导航菜单-->
 				<el-menu :default-active="$route.path" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" @open="handleopen" @close="handleclose" @select="handleselect"
 					 unique-opened router v-show="!collapsed">
-					<template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
+					<template v-for="(item,index) in menuList" v-if="!item.hidden">
 						<el-submenu :index="index+''" v-if="!item.leaf">
 							<template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
 							<el-menu-item v-for="child in item.children" :index="child.path" :key="child.path" v-if="!child.hidden">{{child.name}}</el-menu-item>
 						</el-submenu>
-						<el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>
+						<el-menu-item v-if="item.leaf && item.children.length > 0" :index="item.children[0].path"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>
 					</template>
 				</el-menu>
-				<!--导航菜单-折叠后-->
-				<ul class="el-menu el-menu-vertical-demo collapsed" v-show="collapsed" ref="menuCollapsed">
-					<li v-for="(item,index) in $router.options.routes" v-if="!item.hidden" class="el-submenu item">
-						<template v-if="!item.leaf">
-							<div class="el-submenu__title" style="padding-left: 20px;" @mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)"><i :class="item.iconCls"></i></div>
-							<ul class="el-menu submenu" :class="'submenu-hook-'+index" @mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)"> 
-								<li v-for="child in item.children" v-if="!child.hidden" :key="child.path" class="el-menu-item" style="padding-left: 40px;" :class="$route.path==child.path?'is-active':''" @click="$router.push(child.path)">{{child.name}}</li>
-							</ul>
-						</template>
-						<template v-else>
-							<li class="el-submenu">
-								<div class="el-submenu__title el-menu-item" style="padding-left: 20px;height: 56px;line-height: 56px;padding: 0 20px;" :class="$route.path==item.children[0].path?'is-active':''" @click="$router.push(item.children[0].path)"><i :class="item.iconCls"></i></div>
-							</li>
-						</template>
-					</li>
-				</ul>
 			</aside>
 			<section class="content-container">
 				<el-breadcrumb separator="/" class="breadcrumb-inner">
@@ -89,7 +73,8 @@
 					type: [],
 					resource: '',
 					desc: ''
-				}
+				},
+				menuList:[],
 			}
 		},
 		methods: {
@@ -126,6 +111,24 @@
 				this.$refs.menuCollapsed.getElementsByClassName('submenu-hook-'+i)[0].style.display=status?'block':'none';
 			}
 		},
+		created(){
+			let _this = this;
+			console.log(this.ajax);
+			let url = _this.host.baseUrl + '/menu'
+			var user = JSON.parse(sessionStorage.getItem('user'));
+			// console.log(user);
+			function getMenuSucc(res){
+				// console.log(res)
+				_this.menuList = res;
+			}
+			function getMenuError(error){
+				console.log(error)
+			}
+
+			_this.ajax.http('get',url,{userid:user.id},getMenuSucc,getMenuError)
+			// _this.ajax.http('get',url,{userid:'02'},getMenuSucc,getMenuError,{})
+			// this.menuList = this.$router.options.routes;
+		},
 		mounted() {
 			var user = sessionStorage.getItem('user');
 			if (user) {
@@ -133,6 +136,8 @@
 				this.sysUserName = user.name || '';
 				this.sysUserAvatar = user.avatar || '';
 			}
+			
+			console.log(this.menuList)
 
 		}
 	}
@@ -142,6 +147,9 @@
 <style scoped lang="scss">
 	@import '~scss_vars';
 	.el-submenu .el-menu-item:focus{
+		outline: none !important;
+	}
+	.el-menu li:focus{
 		outline: none !important;
 	}
 	.container {
