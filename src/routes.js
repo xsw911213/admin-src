@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Main from './views/Main.vue'
 import hotelSetting from './views/settings/hotelSetting'
 import accountSetting from './views/settings/accountSetting'
+import personalSetting from './views/settings/personalSetting'
 import begin from './views/adSetting/begin'
 import top from './views/adSetting/top'
 import bottom from './views/adSetting/bottom'
@@ -26,6 +27,17 @@ let routes = [
         path: '*',
         hidden: true,
         redirect: { path: '/404' }
+    },
+    {
+        path: '/',
+        component: Home,
+        name: '个人设置',
+        leaf: true,//只有一个节点
+        hidden: true,
+        iconCls: 'el-icon-message',//图标样式class
+        children: [
+            { path: '/personalSetting', component: personalSetting, name: '' },
+        ]
     },
     //{ path: '/main', component: Main },
     {
