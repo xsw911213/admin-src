@@ -116,7 +116,7 @@
 			console.log(this.ajax);
 			let url = _this.host.baseUrl + '/menu'
 			var user = JSON.parse(sessionStorage.getItem('user'));
-			// console.log(user);
+			console.log(user);
 			function getMenuSucc(res){
 				// console.log(res)
 				_this.menuList = res;
@@ -125,7 +125,7 @@
 				console.log(error)
 			}
 
-			_this.ajax.http('get',url,{userid:user.id},getMenuSucc,getMenuError)
+			_this.ajax.http('get',url,{role:user.role},getMenuSucc,getMenuError)
 			// _this.ajax.http('get',url,{userid:'02'},getMenuSucc,getMenuError,{})
 			// this.menuList = this.$router.options.routes;
 		},

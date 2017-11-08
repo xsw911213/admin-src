@@ -25,8 +25,8 @@
       return {
         logining: false,
         ruleForm2: {
-          account: 'master',
-          checkPass: '123456'
+          account: '',
+          checkPass: ''
         },
         rules2: {
           account: [
@@ -60,6 +60,14 @@
               _this.logining = false;
               if(data.status === 'success'){
                 sessionStorage.setItem('user', JSON.stringify(data.userinfo));
+                localStorage.setItem('account', JSON.stringify(_this.ruleForm2.account));
+
+                if(_this.checked){
+                  localStorage.setItem('checkPass', JSON.stringify(_this.ruleForm2.checkPass));
+                }else{
+                  localStorage.setItem('checkPass', '');
+                }
+                
                 _this.$router.push({ path: data.path });
               }
             })
@@ -98,7 +106,10 @@
       }
     },
     mounted(){
-      console.log(this.host)
+      this.ruleForm2.account = JSON.parse(localStorage.getItem('account'));
+      this.ruleForm2.checkPass = JSON.parse(localStorage.getItem('checkPass'));
+      console.log(localStorage.getItem('account'))
+      console.log(localStorage.getItem('checkPass'))
     }
   }
 

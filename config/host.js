@@ -1,6 +1,6 @@
 const isDugger = process.env.NODE_ENV !== 'production';
 var development = {
-  baseUrl: 'http://10.168.34.69:3008',
+  baseUrl: 'http://127.0.0.1:3008',
 };
 var production = {
   baseUrl: '',
