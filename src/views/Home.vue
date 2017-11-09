@@ -10,7 +10,7 @@
 				</div>
 			</el-col> -->
 			<el-col :span="4" class="userinfo">
-				<el-dropdown trigger="hover">
+				<el-dropdown trigger="click">
 					<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" /> {{sysUserName}}</span>
 					<el-dropdown-menu slot="dropdown" style="top:30px;">
 						<!-- <el-dropdown-item>我的消息</el-dropdown-item> -->
@@ -62,8 +62,6 @@
 			return {
 				sysName:'ADADMIN',
 				collapsed:false,
-				sysUserName: '',
-				sysUserAvatar: '',
 				form: {
 					name: '',
 					region: '',
@@ -90,7 +88,6 @@
 			handleselect: function (a, b) {
 			},
 			gotoPersonalSetting(){
-				console.log(111);
 				this.$router.push({ path: '/personalSetting' });
 			},
 			//退出登录
@@ -115,10 +112,10 @@
 		},
 		created(){
 			let _this = this;
-			console.log(this.ajax);
+			// console.log(this.ajax);
 			let url = _this.host.baseUrl + '/menu'
 			var user = JSON.parse(sessionStorage.getItem('user'));
-			console.log(user);
+			// console.log(user);
 			function getMenuSucc(res){
 				// console.log(res)
 				_this.menuList = res;
@@ -131,15 +128,51 @@
 			// _this.ajax.http('get',url,{userid:'02'},getMenuSucc,getMenuError,{})
 			// this.menuList = this.$router.options.routes;
 		},
-		mounted() {
-			var user = sessionStorage.getItem('user');
-			if (user) {
-				user = JSON.parse(user);
-				this.sysUserName = user.name || '';
-				this.sysUserAvatar = user.avatar || '';
+		computed:{
+			sysUserName(){
+				let user = JSON.parse(sessionStorage.getItem('user'));
+				return this.$store.state.sysUserName ? this.$store.state.sysUserName : user.name;
+			},
+			sysUserAvatar(){
+				let user = JSON.parse(sessionStorage.getItem('user'));
+				return this.$store.state.sysUserAvatar ? this.$store.state.sysUserAvatar : user.avatar;
 			}
+		},
+		mounted() {
+			console.log(this.$store)
+			// let user = sessionStorage.getItem('user');
+			// if (user) {
+			// 	user = JSON.parse(user);
+			// 	this.sysUserName = user.name || '';
+			// 	this.sysUserAvatar = user.avatar || '';
+			// }
+
+			// this.sysUserName = this.USERINFO.name;
+			// this.sysUserAvatar = this.USERINFO.avatar;
 			
-			console.log(this.menuList)
+			// if(this.USERINFO.name){
+			// 	this.sysUserName = this.USERINFO.name;
+			// 	this.sysUserAvatar = this.USERINFO.avatar;
+			// }else{
+			// 	let user = sessionStorage.getItem('user');
+			// 	if (user) {
+			// 		user = JSON.parse(user);
+			// 		this.sysUserName = user.name || '';
+			// 		this.sysUserAvatar = user.avatar || '';
+			// 	}
+			// }
+			
+			
+			
+			// this.sysUserName = this.$store.state.sysUserName;
+			// this.sysUserAvatar = this.$store.state.sysUserAvatar;
+
+			
+
+			// _this.USERINFO.name = data.userinfo.name;
+      // _this.USERINFO.avatar = data.userinfo.avatar;
+			
+			// console.log(this.menuList)
 
 		}
 	}

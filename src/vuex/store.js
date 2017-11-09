@@ -1,29 +1,33 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as actions from './actions'
-import * as getters from './getters'
+// import * as actions from './actions'
+// import * as getters from './getters'
 
 Vue.use(Vuex)
 
 // 应用初始状态
 const state = {
-    count: 10
+    count: 10,
+    sysUserName: null,
+    sysUserAvatar: null
 }
 
 // 定义所需的 mutations
 const mutations = {
-    INCREMENT(state) {
-        state.count++
+    USERNAME(state,username) {
+        //state.count++
+        state.sysUserName = username;
     },
-    DECREMENT(state) {
-        state.count--
+    USERAVATAR(state,useravatar) {
+        // state.count--
+        state.sysUserAvatar = useravatar;
     }
 }
 
 // 创建 store 实例
 export default new Vuex.Store({
-    actions,
-    getters,
+    // actions,
+    // getters,
     state,
     mutations
 })

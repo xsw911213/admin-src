@@ -60,7 +60,11 @@
               _this.logining = false;
               if(data.status === 'success'){
                 sessionStorage.setItem('user', JSON.stringify(data.userinfo));
+    
                 localStorage.setItem('account', JSON.stringify(_this.ruleForm2.account));
+
+                _this.$store.commit('USERNAME',data.userinfo.name);
+                _this.$store.commit('USERAVATAR',data.userinfo.avatar);
 
                 if(_this.checked){
                   localStorage.setItem('checkPass', JSON.stringify(_this.ruleForm2.checkPass));

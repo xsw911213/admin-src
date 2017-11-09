@@ -18,6 +18,7 @@ import 'font-awesome/css/font-awesome.min.css'
 
 import axios from 'axios';
 
+
 Vue.use(ElementUI)
 Vue.use(VueRouter)
 Vue.use(Vuex)
