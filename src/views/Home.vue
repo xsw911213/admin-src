@@ -14,7 +14,7 @@
 					<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" /> {{sysUserName}}</span>
 					<el-dropdown-menu slot="dropdown" style="top:30px;">
 						<!-- <el-dropdown-item>我的消息</el-dropdown-item> -->
-						<el-dropdown-item @click.native="gotoPersonalSetting">设置</el-dropdown-item>
+						<el-dropdown-item @click.native="gotoPersonalSetting">个人中心</el-dropdown-item>
 						<el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
 					</el-dropdown-menu>
 				</el-dropdown>
@@ -139,7 +139,7 @@
 			}
 		},
 		mounted() {
-			console.log(this.$store)
+			// console.log(this.$store)
 			// let user = sessionStorage.getItem('user');
 			// if (user) {
 			// 	user = JSON.parse(user);

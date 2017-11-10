@@ -254,7 +254,7 @@ export default {
     _this.ajax.http(
       "get",
       url,
-      { username: user.username },
+      { userid: user.userid },
       getMenuSucc,
       getMenuError
     );
