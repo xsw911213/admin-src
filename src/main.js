@@ -29,6 +29,7 @@ Vue.prototype.ajax = ajax;
 //NProgress.configure({ showSpinner: false });
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 
@@ -42,6 +43,14 @@ router.beforeEach((to, from, next) => {
     next({ path: '/login' })
   } else {
     next()
+  }
+
+  if(user && user.role !== 'master'){
+    if(to.path === "/hotelSetting" || to.path === "/accountSetting"){
+      next({ path: '/404' });
+    }else{
+      next()
+    }
   }
 })
 

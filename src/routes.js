@@ -28,17 +28,6 @@ let routes = [
         hidden: true,
         redirect: { path: '/404' }
     },
-    {
-        path: '/',
-        component: Home,
-        name: '个人设置',
-        leaf: true,//只有一个节点
-        hidden: true,
-        iconCls: 'el-icon-message',//图标样式class
-        children: [
-            { path: '/personalSetting', component: personalSetting, name: '' },
-        ]
-    },
     //{ path: '/main', component: Main },
     {
         path: '/',
@@ -48,6 +37,17 @@ let routes = [
         iconCls: 'el-icon-message',//图标样式class
         children: [
             { path: '/main', component: Main, name: '主页' },
+        ]
+    },
+    {
+        path: '/',
+        component: Home,
+        name: '个人设置',
+        leaf: true,//只有一个节点
+        hidden: true,
+        iconCls: 'el-icon-message',//图标样式class
+        children: [
+            { path: '/personalSetting', component: personalSetting, name: '' },
         ]
     },
     {
@@ -66,9 +66,9 @@ let routes = [
         name: '广告投放',
         iconCls: 'fa fa-id-card-o',
         children: [
-            { path: '/begin', component: begin, name: '开屏广告' },
-            { path: '/top', component: top, name: '上滚动条' },
-            { path: '/bottom', component: bottom, name: '下固定广告位' }
+            { path: '/beginAd', component: begin, name: '开屏广告' },
+            { path: '/topAd', component: top, name: '上滚动条' },
+            { path: '/bottomAd', component: bottom, name: '下固定广告位' }
         ]
     }
     // {
