@@ -40,7 +40,7 @@
 				<span style="margin-left:15px;">
 					跳转地址：<a :href="item.link" target="_blank">{{item.link}}</a>
 				</span>
-				<el-button type="text" style="margin-left:20px;color:#fa5555;">删除</el-button>
+				<el-button type="text" style="margin-left:20px;color:#fa5555;" @click="deleteAd(item._id)">删除</el-button>
 			</div>
 		</el-tooltip>
     <p v-if="adArr1.length > 0">还未投放</p>
@@ -55,7 +55,7 @@
 				<span style="margin-left:15px;">
 					跳转地址：<a :href="item.link" target="_blank">{{item.link}}</a>
 				</span>
-				<el-button type="text" style="margin-left:20px;color:#fa5555;">删除</el-button>
+				<el-button type="text" style="margin-left:20px;color:#fa5555;" @click="deleteAd(item._id)">删除</el-button>
 			</div>
 		</el-tooltip>
     <p v-if="adArr2.length > 0">已经投放</p>
@@ -81,16 +81,16 @@
 import axios from "axios";
 export default {
   data() {
-    var validatePass = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请输入密码"));
-      } else {
-        if (this.ruleForm.checkPass !== "") {
-          this.$refs.ruleForm.validateField("checkPass");
-        }
-        callback();
-      }
-    };
+    // var validatePass = (rule, value, callback) => {
+    //   if (value === "") {
+    //     callback(new Error("请输入密码"));
+    //   } else {
+    //     if (this.ruleForm.checkPass !== "") {
+    //       this.$refs.ruleForm.validateField("checkPass");
+    //     }
+    //     callback();
+    //   }
+    // };
     return {
       pickerOptions0: {
         disabledDate(time) {
@@ -170,8 +170,6 @@ export default {
       let url = _this.host.baseUrl + "/beginadsetting";
 
       function getSucc(res){
-        console.log(res);
-
         let arr0 = [];
         let arr1 = [];
         let arr2 = [];
@@ -215,12 +213,10 @@ export default {
         }
 
         let standardTime = new Date(res.date).Format("yyyy-MM-dd")
-        console.log(standardTime)
 
         res.data.forEach(function(item,index){
           item.error = false;
           if(standardTime === new Date(item.date).Format("yyyy-MM-dd")){
-            console.log(111)
             arr0.push(item)
           }else if(standardTime < new Date(item.date).Format("yyyy-MM-dd")){
             // 已经投放的广告
@@ -342,6 +338,34 @@ export default {
           return false;
         }
       });
+    },
+    deleteAd(id){
+      let _this = this;
+      this.$confirm('此操作将永久删除这条广告，且不可恢复, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {  
+        let url = _this.host.baseUrl + "/beginadsetting";
+        function getSucc(res){
+          console.log(res)
+          _this.getBeginAds();
+          _this.$message({
+            type: 'success',
+            message: '删除成功'
+          });
+        }
+        function getError(res){
+          console.log(res)
+        }
+        _this.ajax.http("delete", url, {_id:id}, getSucc, getError);
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });          
+      });
+      
     }
 	},
 	mounted(){
