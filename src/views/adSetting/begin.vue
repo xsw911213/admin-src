@@ -248,11 +248,14 @@ export default {
       }else{
         if(!(this.ruleForm.link.indexOf('http') >= 0)){
           // 填写的链接地址不正确
-          this.$message({
-            message: '请填写正确的链接地址',
-            type: 'error',
-            // duration:10000000
-          });
+          if(this.ruleForm.link !== "#"){
+            this.$message({
+              message: '请填写正确的链接地址',
+              type: 'error',
+              // duration:10000000
+            });
+          }
+          
         }
       }
     },
@@ -457,6 +460,20 @@ export default {
   
   a{
     color: #fa5555;
+  }
+}
+
+.el-tooltip__popper{
+  div{
+    a{
+      color: #000;
+      text-decoration: none;
+    }
+    img{
+      width: 330px;
+      height: 170px;
+    }
+    
   }
 }
 </style>
