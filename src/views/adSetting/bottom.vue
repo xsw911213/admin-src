@@ -1,7 +1,7 @@
 <template>
 	<section>
 		<!--工具条-->
-		这是下固定位置广告
+		这是下固定位置广告，此区域还未开放
 
 	</section>
 </template>
