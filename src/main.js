@@ -29,7 +29,7 @@ Vue.prototype.ajax = ajax;
 //NProgress.configure({ showSpinner: false });
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   routes
 })
 
