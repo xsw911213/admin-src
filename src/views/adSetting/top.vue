@@ -18,7 +18,7 @@
               <img v-if="ruleForm.adimg[index-1]" :src="ruleForm.adimg[index-1]" class="avatar">
               <i v-else class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
-            <p>建议上传图片大小为330*170(w*h)，且图片大小上限为2M</p>
+            <p>上传图片大小为<span style="color:red">828*160（推荐）</span>或414*80，以保证图片不会变形，且图片大小上限为2M，最好控制在200k以内</p>
             <el-input v-model="ruleForm.adimg[index-1]"  style="width:350px;" placeholder="图片地址"></el-input>
           </el-form-item>
           <el-form-item label="跳转链接：" style="margin-bottom:20px;">
@@ -408,19 +408,19 @@ export default {
   float: left;
   padding-right: 50px;
   .avatar-uploader{
-    height: 170px;
+    height: 80px;
   }
   .avatar-uploader-icon {
     font-size: 28px;
     color: #8c939d;
-    width: 330px;
-    height: 170px;
-    line-height: 170px;
+    width: 414px;
+    height: 80px;
+    line-height: 80px;
     text-align: center;
   }
   .avatar {
-    width: 330px;
-    height: 170px;
+    width: 414px;
+    height: 80px;
     display: block;
   }
 
