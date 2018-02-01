@@ -1,57 +1,32 @@
-**demo**: [https://taylorchen709.github.io/vue-admin/](https://taylorchen709.github.io/vue-admin/)
+# 广告系统前台页面源码
 
-# To start
+> 这个项目是本人第一次尝试通过node+mongoDb，打通全栈流程。完成一个项目的整体功能实现。打包后的代码集成到后台项目中去，并统一部署到服务器上。
 
-This is a project template for [vue-cli](https://github.com/vuejs/vue-cli)
+## 项目概述
 
-``` bash
-# install dependencies
-npm install
+#### 项目背景
+本项目为利用业余时间帮助朋友做的一个项目，并没有什么太高深的技巧，因为也是自学的第一个可以用于生产环境的代码。
 
-# serve with hot reload at localhost:8081
+同时，也没有遇到过什么高并发之类的业务情况，仅仅是完成了功能的实现。
+
+安全问题依托于阿里云的安全服务，并没有在代码和服务器中去做。
+
+
+#### 项目使用技术
+本项目为前后端分离项目，前端使用vue+vue-router+axios+element-ui的技术栈，后台使用Node(express)+MongoDB([项目在这里](https://github.com/xsw911213/adsys-service))。(项目搭建参考了[vue-admin](https://github.com/taylorchen709/vue-admin/))
+
+
+## 项目安装及运行
+
+就是常见的项目代码的拉取(```git clone```)和依赖安装(```npm install```)这里不再赘述
+
+#### 项目启动
+```
 npm run dev
-
-# build for production with minification
-npm run build
-
 ```
 
-# Folder structure
-* build - webpack config files
-* config - webpack config files
-* dist - build
-* src -your app
-    * api
-    * assets
-    * common
-    * components - your vue components
-    * mock
-    * styles
-    * views - your pages
-    * vuex
-    * App.vue
-    * main.js - main file
-    * routes.js
-* static - static assets
+#### 项目打包 
 
-# Theme
-You can change theme by 
-1. Generate theme packages by [https://elementui.github.io/theme-preview/#/](https://elementui.github.io/theme-preview/#/)
-2. Put theme packages in src/assets/theme/
-3. Edit src/main.js 
-``` bash
-   import 'element-ui/lib/theme-default/index.css'
-   to
-   import './assets/theme/your-theme/index.css'
 ```
-4. Edit src/styles/vars.scss
-
-![theme-blue](https://raw.githubusercontent.com/taylorchen709/markdown-images/master/vueadmin/rec-demo.gif)
-![theme-green](https://raw.githubusercontent.com/taylorchen709/markdown-images/master/vueadmin/theme-green.png)
-
-# Browser support
-
-Modern browsers and IE 10+.
-
-# License
-[MIT](http://opensource.org/licenses/MIT)
+npm run dev
+```
