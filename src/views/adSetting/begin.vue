@@ -22,7 +22,7 @@
 			<!-- <el-form-item label="跳转链接：" prop="pass"> -->
 			<el-form-item label="跳转链接：" style="margin-bottom:20px;">
 				<el-input v-model="ruleForm.link" placeholder="填写跳转链接" auto-complete="off" @blur="initLinkStr()" style="width:500px;"></el-input>
-        <span>如果输入的话一定要带上http://或者https://</span>
+        <span>如果输入的话一定要带上http://或者https://，如果是拨打电话的话输入  tel:xxxxxxxxxxx</span>
 			</el-form-item>
 			<el-form-item style="margin-bottom:20px;">
 				<el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
