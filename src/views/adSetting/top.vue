@@ -175,11 +175,11 @@ export default {
       if(this.ruleForm.link[index] === ''){
         this.ruleForm.link.splice(index,1,'#')
       }else{
-        if(!(this.ruleForm.link[index].indexOf('http') >= 0)){
+        if(!(this.ruleForm.link[index].indexOf('http') >= 0 || this.ruleForm.link[index].indexOf('tel:') >= 0)){
           // 填写的链接地址不正确
           if(this.ruleForm.link[index] !== "#"){
             this.$message({
-              message: '请填写正确的链接地址',
+              message: '请填写正确的链接地址，或者按照标准格式来输入电话号码',
               type: 'error',
               // duration:10000000
             });
