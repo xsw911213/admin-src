@@ -10,6 +10,9 @@ import top from './views/adSetting/top'
 import bottom from './views/adSetting/bottom'
 // import echarts from './views/charts/echarts.vue'
 
+// const Shop = resolve => require(['../pages/Shop/shop'], resolve);
+// const Order = resolve => require(['../pages/Order/order'], resolve);
+
 let routes = [
     {
         path: '/login',
